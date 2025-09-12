@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livraria Aura - Sua Livraria de Bairro</title>
+    <link rel="stylesheet" href="variables.css">
+    <link rel="stylesheet" href="atoms/buttom.css">
+    <link rel="stylesheet" href="atoms/text.css">
+    <link rel="stylesheet" href="atoms/price.css">
+    <link rel="stylesheet" href="atoms/badge.css">
+    <link rel="stylesheet" href="molecules/card.css">
+    <link rel="stylesheet" href="molecules/alert.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img src="./img/Livraria-Aura.png" alt="Livraria Aura" class="logo-img">
+                <h1 class="logo-text">Livraria Aura</h1>
+            </div>
+            
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Início</a></li>
+                    <li><a href="#catalog" class="nav-link">Catálogo</a></li>
+                    <li><a href="#about" class="nav-link">Sobre</a></li>
+                    <li><a href="#admin" class="nav-link admin-link">Admin</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <ul class="mobile-nav-links">
+            <li><a href="#home" class="nav-link">Início</a></li>
+            <li><a href="#catalog" class="nav-link">Catálogo</a></li>
+            <li><a href="#about" class="nav-link">Sobre</a></li>
+            <li><a href="#admin" class="nav-link admin-link">Admin</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Bem-vindo à Livraria Aura</h1>
+                    <p class="hero-subtitle">Sua livraria de bairro com curadoria especial e ambiente acolhedor</p>
+                    <button class="btn btn--primary btn--large" onclick="scrollToSection('catalog')">
+                        <i class="fas fa-book"></i>
+                        Explorar Catálogo
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="catalog" class="catalog-section">
+            <div class="container">
+                <h2 class="section-title">Nosso Catálogo</h2>
+                
+                <div class="catalog-controls">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="Buscar livros..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    
+                    <div class="filter-controls">
+                        <select id="sortSelect" class="sort-select">
+                            <option value="title">Ordenar por Título</option>
+                            <option value="author">Ordenar por Autor</option>
+                            <option value="price-asc">Preço (Menor para Maior)</option>
+                            <option value="price-desc">Preço (Maior para Menor)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="books-grid" id="booksGrid">
+                </div>
+
+                <div class="loading" id="loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando livros...</p>
+                </div>
+
+                <div class="no-results" id="noResults" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <p>Nenhum livro encontrado</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Sobre a Livraria Aura</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>A Livraria Aura é uma charmosa livraria de bairro que se dedica a oferecer uma curadoria especial de livros em um ambiente acolhedor e inspirador.</p>
+                        <p>Nossa missão é conectar leitores com histórias extraordinárias, proporcionando uma experiência única de descoberta literária.</p>
+                        <div class="features">
+                            <div class="feature">
+                                <i class="fas fa-book-open"></i>
+                                <h3>Curadoria Especial</h3>
+                                <p>Selecionamos cuidadosamente cada título do nosso acervo</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-heart"></i>
+                                <h3>Ambiente Acolhedor</h3>
+                                <p>Um espaço confortável para descobrir sua próxima leitura</p>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-users"></i>
+                                <h3>Comunidade</h3>
+                                <p>Conectamos leitores e promovemos o amor pela literatura</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="admin" class="admin-section" style="display: none;">
+            <div class="container">
+                <h2 class="section-title">Área Administrativa</h2>
+                
+                <div class="admin-login" id="adminLogin">
+                    <div class="login-form">
+                        <h3>Login Administrativo</h3>
+                        <form id="loginForm">
+                            <div class="form-group">
+                                <label for="username">Usuário:</label>
+                                <input type="text" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha:</label>
+                                <input type="password" id="password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Entrar
+                            </button>
+                        </form>
+                        <p class="login-hint">Dica: usuário: admin, senha: admin123</p>
+                    </div>
+                </div>
+
+                <div class="admin-panel" id="adminPanel" style="display: none;">
+                    <div class="admin-header">
+                        <h3>Gerenciar Livros</h3>
+                        <button class="btn btn--danger" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            Sair
+                        </button>
+                    </div>
+
+                    <div class="admin-form">
+                        <h4>Adicionar/Editar Livro</h4>
+                        <form id="bookForm">
+                            <input type="hidden" id="editBookId" value="">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bookTitle">Título:</label>
+                                    <input type="text" id="bookTitle" name="title" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookAuthor">Autor:</label>
+                                    <input type="text" id="bookAuthor" name="author" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="bookPrice">Preço (R$):</label>
+                                    <input type="number" id="bookPrice" name="price" step="0.01" min="0" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookImage">URL da Imagem:</label>
+                                    <input type="url" id="bookImage" name="image" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn--primary" id="submitBtn">
+                                    <i class="fas fa-save"></i>
+                                    Salvar Livro
+                                </button>
+                                <button type="button" class="btn" id="cancelBtn" style="display: none;">
+                                    <i class="fas fa-times"></i>
+                                    Cancelar
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="admin-table">
+                        <h4>Livros Cadastrados</h4>
+                        <div class="table-container">
+                            <table class="books-table">
+                                <thead>
+                                    <tr>
+                                        <th>Imagem</th>
+                                        <th>Título</th>
+                                        <th>Autor</th>
+                                        <th>Preço</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminBooksTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Livraria Aura</h3>
+                    <p>Sua livraria de bairro com curadoria especial</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (11) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> contato@livrariaaura.com</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Livraria Aura. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="alertContainer" class="alert-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
