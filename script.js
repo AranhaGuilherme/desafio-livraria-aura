@@ -1,4 +1,4 @@
-// Modern JavaScript ES6+ for Livraria Aura
+
 class LibrariaAura {
     constructor() {
         this.books = this.loadBooksFromStorage();
@@ -8,20 +8,19 @@ class LibrariaAura {
         this.init();
     }
 
-    // Initialize the application
+
     init() {
         this.setupEventListeners();
         this.renderBooks();
         this.setupMobileMenu();
         this.setupSmoothScrolling();
-        
-        // Load initial data if empty
+
         if (this.books.length === 0) {
             this.loadInitialBooks();
         }
     }
 
-    // Load initial book data
+  
     loadInitialBooks() {
         const initialBooks = [
             {
@@ -66,51 +65,50 @@ class LibrariaAura {
         this.renderBooks();
     }
 
-    // Setup event listeners
+ 
     setupEventListeners() {
-        // Navigation
+   
         document.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', (e) => this.handleNavigation(e));
         });
 
-        // Search functionality
+     
         const searchInput = document.getElementById('searchInput');
         if (searchInput) {
             searchInput.addEventListener('input', (e) => this.handleSearch(e.target.value));
         }
 
-        // Sort functionality
         const sortSelect = document.getElementById('sortSelect');
         if (sortSelect) {
             sortSelect.addEventListener('change', (e) => this.handleSort(e.target.value));
         }
 
-        // Admin login
+ 
         const loginForm = document.getElementById('loginForm');
         if (loginForm) {
             loginForm.addEventListener('submit', (e) => this.handleLogin(e));
         }
 
-        // Admin logout
+
         const logoutBtn = document.getElementById('logoutBtn');
         if (logoutBtn) {
             logoutBtn.addEventListener('click', () => this.handleLogout());
         }
 
-        // Book form
+    
         const bookForm = document.getElementById('bookForm');
         if (bookForm) {
             bookForm.addEventListener('submit', (e) => this.handleBookSubmit(e));
         }
 
-        // Cancel edit
+   
         const cancelBtn = document.getElementById('cancelBtn');
         if (cancelBtn) {
             cancelBtn.addEventListener('click', () => this.cancelEdit());
         }
     }
 
-    // Setup mobile menu
+  
     setupMobileMenu() {
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileNav = document.getElementById('mobileNav');
@@ -120,7 +118,7 @@ class LibrariaAura {
                 mobileNav.classList.toggle('active');
             });
 
-            // Close mobile menu when clicking on a link
+        
             document.querySelectorAll('.mobile-nav .nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileNav.classList.remove('active');
@@ -129,7 +127,6 @@ class LibrariaAura {
         }
     }
 
-    // Setup smooth scrolling
     setupSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -145,18 +142,16 @@ class LibrariaAura {
         });
     }
 
-    // Handle navigation
+   
     handleNavigation(e) {
         e.preventDefault();
         const href = e.target.getAttribute('href');
         
-        // Update active nav link
         document.querySelectorAll('.nav-link').forEach(link => {
             link.classList.remove('active');
         });
         e.target.classList.add('active');
 
-        // Show/hide sections
         if (href === '#admin') {
             this.showAdminSection();
         } else {
@@ -173,7 +168,7 @@ class LibrariaAura {
         }
     }
 
-    // Show admin section
+   
     showAdminSection() {
         const adminSection = document.getElementById('admin');
         if (adminSection) {
@@ -185,7 +180,7 @@ class LibrariaAura {
         }
     }
 
-    // Hide admin section
+
     hideAdminSection() {
         const adminSection = document.getElementById('admin');
         if (adminSection) {
@@ -193,7 +188,7 @@ class LibrariaAura {
         }
     }
 
-    // Handle search
+
     handleSearch(query) {
         const filteredBooks = this.books.filter(book => 
             book.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -202,7 +197,7 @@ class LibrariaAura {
         this.renderBooks(filteredBooks);
     }
 
-    // Handle sort
+
     handleSort(sortBy) {
         let sortedBooks = [...this.books];
         
@@ -224,7 +219,7 @@ class LibrariaAura {
         this.renderBooks(sortedBooks);
     }
 
-    // Render books in the catalog
+
     renderBooks(booksToRender = this.books) {
         const booksGrid = document.getElementById('booksGrid');
         const noResults = document.getElementById('noResults');
@@ -257,14 +252,14 @@ class LibrariaAura {
         `).join('');
     }
 
-    // Handle admin login
+
     handleLogin(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const username = formData.get('username');
         const password = formData.get('password');
 
-        // Simple authentication (in a real app, this would be more secure)
+    
         if (username === 'admin' && password === 'admin123') {
             this.currentUser = { username };
             this.showAdminPanel();
@@ -274,14 +269,14 @@ class LibrariaAura {
         }
     }
 
-    // Handle logout
+   
     handleLogout() {
         this.currentUser = null;
         this.hideAdminPanel();
         this.showAlert('Logout realizado com sucesso!', 'success');
     }
 
-    // Show admin panel
+  
     showAdminPanel() {
         const adminLogin = document.getElementById('adminLogin');
         const adminPanel = document.getElementById('adminPanel');
@@ -293,7 +288,7 @@ class LibrariaAura {
         }
     }
 
-    // Hide admin panel
+ 
     hideAdminPanel() {
         const adminLogin = document.getElementById('adminLogin');
         const adminPanel = document.getElementById('adminPanel');
@@ -304,7 +299,6 @@ class LibrariaAura {
         this.cancelEdit();
     }
 
-    // Handle book form submission
     handleBookSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -316,7 +310,7 @@ class LibrariaAura {
             image: formData.get('image').trim()
         };
 
-        // Validation
+
         if (!this.validateBookData(bookData)) {
             return;
         }
@@ -324,15 +318,15 @@ class LibrariaAura {
         const editBookId = document.getElementById('editBookId').value;
         
         if (editBookId) {
-            // Update existing book
+           
             this.updateBook(editBookId, bookData);
         } else {
-            // Create new book
+        
             this.createBook(bookData);
         }
     }
 
-    // Validate book data
+
     validateBookData(bookData) {
         if (!bookData.title) {
             this.showAlert('Título é obrigatório!', 'error');
@@ -357,7 +351,7 @@ class LibrariaAura {
         return true;
     }
 
-    // Create new book (CRUD - Create)
+  
     createBook(bookData) {
         const newBook = {
             id: this.generateId(),
@@ -372,7 +366,7 @@ class LibrariaAura {
         this.showAlert('Livro adicionado com sucesso!', 'success');
     }
 
-    // Update existing book (CRUD - Update)
+   
     updateBook(bookId, bookData) {
         const bookIndex = this.books.findIndex(book => book.id === bookId);
         
@@ -388,7 +382,7 @@ class LibrariaAura {
         }
     }
 
-    // Delete book (CRUD - Delete)
+    
     deleteBook(bookId) {
         if (confirm('Tem certeza que deseja excluir este livro?')) {
             this.books = this.books.filter(book => book.id !== bookId);
@@ -399,7 +393,7 @@ class LibrariaAura {
         }
     }
 
-    // Edit book (CRUD - Read for editing)
+  
     editBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
         
@@ -422,7 +416,7 @@ class LibrariaAura {
             
             this.editingBookId = bookId;
             
-            // Scroll to form
+            
             document.querySelector('.admin-form').scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -430,13 +424,13 @@ class LibrariaAura {
         }
     }
 
-    // Cancel edit
+    
     cancelEdit() {
         this.resetBookForm();
         this.editingBookId = null;
     }
 
-    // Reset book form
+    
     resetBookForm() {
         const bookForm = document.getElementById('bookForm');
         if (bookForm) {
@@ -456,7 +450,7 @@ class LibrariaAura {
         }
     }
 
-    // Render books in admin table (CRUD - Read)
+   
     renderAdminBooks() {
         const adminBooksTable = document.getElementById('adminBooksTable');
         
@@ -496,12 +490,12 @@ class LibrariaAura {
         `).join('');
     }
 
-    // Generate unique ID
+    
     generateId() {
         return Date.now().toString(36) + Math.random().toString(36).substr(2);
     }
 
-    // Local Storage operations
+  
     saveBooksToStorage() {
         try {
             localStorage.setItem('livraria_aura_books', JSON.stringify(this.books));
@@ -521,7 +515,7 @@ class LibrariaAura {
         }
     }
 
-    // Show alert messages
+    
     showAlert(message, type = 'success') {
         const alertContainer = document.getElementById('alertContainer');
         if (!alertContainer) return;
@@ -542,7 +536,7 @@ class LibrariaAura {
 
         alertContainer.appendChild(alertElement);
 
-        // Auto remove after 5 seconds
+        
         setTimeout(() => {
             const alert = document.getElementById(alertId);
             if (alert) {
@@ -557,7 +551,7 @@ class LibrariaAura {
     }
 }
 
-// Utility functions
+
 function scrollToSection(sectionId) {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -568,7 +562,7 @@ function scrollToSection(sectionId) {
     }
 }
 
-// Add slideOut animation
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes slideOut {
@@ -584,12 +578,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Initialize the application when DOM is loaded
+
 document.addEventListener('DOMContentLoaded', () => {
     window.app = new LibrariaAura();
 });
 
-// Service Worker registration for PWA capabilities (optional enhancement)
+
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('/sw.js')
