@@ -1,7 +1,6 @@
-/* Import Google Fonts */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
 
-/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -21,7 +20,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header Styles */
+
 .header {
     background: linear-gradient(135deg, var(--color-dark), #424242);
     color: var(--color-white);
@@ -91,7 +90,7 @@ body {
     background-color: #c73e3e;
 }
 
-/* Mobile Menu */
+
 .mobile-menu-btn {
     display: none;
     background: none;
@@ -127,12 +126,12 @@ body {
     border-radius: 0;
 }
 
-/* Main Content */
+
 main {
     margin-top: 80px;
 }
 
-/* Hero Section */
+
 .hero {
     background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     color: var(--color-white);
@@ -159,7 +158,7 @@ main {
     opacity: 0.9;
 }
 
-/* Section Styles */
+
 .section-title {
     font-family: 'Roboto Slab', serif;
     font-size: 2.5rem;
@@ -181,7 +180,7 @@ main {
     border-radius: 2px;
 }
 
-/* Catalog Section */
+
 .catalog-section {
     padding: 4rem 0;
 }
@@ -239,7 +238,7 @@ main {
     border-color: var(--color-primary);
 }
 
-/* Books Grid */
+
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -247,7 +246,7 @@ main {
     margin-bottom: 2rem;
 }
 
-/* Book Card Enhancements */
+
 .book-card {
     background: var(--color-white);
     border-radius: 12px;
@@ -304,7 +303,7 @@ main {
     gap: 0.5rem;
 }
 
-/* Loading and No Results */
+
 .loading,
 .no-results {
     text-align: center;
@@ -319,7 +318,7 @@ main {
     color: var(--color-primary);
 }
 
-/* About Section */
+
 .about-section {
     padding: 4rem 0;
     background-color: var(--color-white);
@@ -368,7 +367,7 @@ main {
     color: var(--color-dark);
 }
 
-/* Admin Section */
+
 .admin-section {
     padding: 4rem 0;
     background-color: var(--color-bg);
@@ -428,7 +427,7 @@ main {
     font-style: italic;
 }
 
-/* Admin Panel */
+
 .admin-panel {
     background: var(--color-white);
     border-radius: var(--border-radius);
@@ -470,7 +469,7 @@ main {
     justify-content: flex-start;
 }
 
-/* Admin Table */
+
 .admin-table {
     margin-top: 2rem;
 }
@@ -521,7 +520,7 @@ main {
     gap: 0.5rem;
 }
 
-/* Footer */
+
 .footer {
     background-color: var(--color-dark);
     color: var(--color-white);
@@ -569,7 +568,7 @@ main {
     color: var(--color-gray-300);
 }
 
-/* Alert Styles */
+
 .alert-container {
     position: fixed;
     top: 100px;
@@ -618,7 +617,7 @@ main {
     }
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -712,7 +711,7 @@ main {
     }
 }
 
-/* Utility Classes */
+
 .text-center {
     text-align: center;
 }
